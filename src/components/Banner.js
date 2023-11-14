@@ -1,19 +1,22 @@
+//we import all the react compotents that will be using as well as an animation
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap"; //allow to create a responsible layout
 import headerImg from "../assets/img/header-img.svg";
-import { ArrowRightCircle } from 'react-bootstrap-icons';
+import { ArrowRightCircle } from 'react-bootstrap-icons'; //it"'s an react-boostrap image
 import 'animate.css';
-import TrackVisibility from 'react-on-screen';
+import TrackVisibility from 'react-on-screen'; // used to trigger the animtion
 
+//th
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState('');
-  const [delta, setDelta] = useState(300 - Math.random() * 100);
+  const [delta, setDelta] = useState(300 - Math.random() * 100);    // Represents the time delay between each character change in milliseconds.
   const [index, setIndex] = useState(1);
   const toRotate = [ "Data Scientist", "Data Analyst", "Data Engineer" ];
-  const period = 2000;
+  const period = 2000; //The time period (in milliseconds) for which each role is displayed before moving to the next one.
 
+  //this method calls the function tick() at a regular delta interval
   useEffect(() => {
     let ticker = setInterval(() => {
       tick();
@@ -22,6 +25,7 @@ export const Banner = () => {
     return () => { clearInterval(ticker) };
   }, [text])
 
+//this function updates the text 
   const tick = () => {
     let i = loopNum % toRotate.length;
     let fullText = toRotate[i];
@@ -62,7 +66,7 @@ export const Banner = () => {
               </div>}
             </TrackVisibility>
           </Col>
-          <Col xs={12} md={6} xl={5}>
+          <Col xs={12} md={6} xl={5}> 
             <TrackVisibility>
               {({ isVisible }) =>
                 <div className={isVisible ? "animate__animated animate__zoomIn" : ""}>
